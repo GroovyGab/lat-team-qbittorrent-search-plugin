@@ -105,14 +105,14 @@ class lat_team(object):
 
     def handle_error(self, error: str):
         result = {
-            'link': '-1',
+            'link': "https://github.com/GroovyGab/lat-team-qbittorrent-search-plugin",
             'name': error,
-            'size': '-1',
-            'seeds': '-1',
-            'leech': '-1',
+            'size': -1,
+            'seeds': -1,
+            'leech': -1,
             'engine_url': self.url,
             'desc_link': 'https://github.com/GroovyGab/lat-team-qbittorrent-search-plugin',
-            'pub_date': '-1',
+            'pub_date': -1,
         }
 
         prettyPrinter(result)
