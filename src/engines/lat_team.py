@@ -10,8 +10,7 @@ from helpers import retrieve_url
 from urllib.parse import urlencode, unquote
 
 
-CONFIG_FILE = 'lat_team.json'
-CONFIG_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), CONFIG_FILE)
+CONFIG_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lat_team.json')
 CONFIG_DATA = {'api_token': 'YOUR_API_TOKEN'}
 
 
@@ -23,8 +22,8 @@ def load_config():
             CONFIG_DATA = json.load(file)
     except FileNotFoundError:
         save_config()
-    except Exception as e:
-        CONFIG_DATA = {'error': str(e)}
+    except Exception as error:
+        CONFIG_DATA = {'error': str(error)}
         save_config()
 
 
