@@ -2,13 +2,13 @@
 # AUTHORS: GroovyGab (ghernandezlohaus.78@gmail.com)
 
 
-import os
 import json
+import os
 from datetime import datetime
-from novaprinter import prettyPrinter
-from helpers import retrieve_url
-from urllib.parse import urlencode, unquote
+from urllib.parse import unquote, urlencode
 
+from helpers import retrieve_url
+from novaprinter import prettyPrinter
 
 CONFIG_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lat_team.json')
 CONFIG_DATA = {'api_token': 'YOUR_API_TOKEN'}
@@ -61,9 +61,7 @@ class lat_team(object):
         category = self.supported_categories[cat.lower()]
 
         if self.errored:
-            self.handle_error(
-                'There\'s been a problem with the configuration file. Check lat_team.json for details.'
-            )
+            self.handle_error("There's been a problem with the configuration file. Check lat_team.json for details.")
             return
 
         params = {
@@ -76,14 +74,10 @@ class lat_team(object):
         if category != '0':
             params['categories[]'] = category
 
-        response = retrieve_url(
-            f'https://lat-team.com/api/torrents/filter?{urlencode(params)}'
-        )
+        response = retrieve_url(f'https://lat-team.com/api/torrents/filter?{urlencode(params)}')
 
         if '<title>Login - Lat-Team</title>' in response:
-            self.handle_error(
-                'API token is not set or invalid. See description page for details.'
-            )
+            self.handle_error('API token is not set or invalid. See description page for details.')
             return
 
         response_json = json.loads(response)
